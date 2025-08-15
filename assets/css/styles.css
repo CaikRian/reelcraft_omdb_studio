@@ -1,0 +1,54 @@
+:root{
+  --bg:#07090f; --fg:#eef2f7; --muted:#9aa4b2; --acc:#7c3aed; --acc2:#06b6d4; --glass:rgba(255,255,255,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 700px at 20% -10%, #111827 0, #07090f 60%);color:var(--fg);min-height:100vh}
+.container{max-width:1100px;margin:0 auto;padding:0 18px}
+a{color:#c4b5fd;text-decoration:none}
+a:hover{text-decoration:underline}
+.bg-orb{position:fixed;inset:0;pointer-events:none;background:radial-gradient(600px 400px at 90% 20%, rgba(124,58,237,.35), transparent 60%), radial-gradient(800px 500px at 10% 90%, rgba(6,182,212,.25), transparent 60%);mix-blend-mode:screen;opacity:.7;filter:blur(20px)}
+.glass{background:var(--glass);border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 80px rgba(0,0,0,.5);backdrop-filter:blur(10px);border-radius:16px}
+.site-header{position:sticky;top:0;z-index:10}
+.nav{display:flex;align-items:center;gap:16px;padding:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+.brand .sub{font-weight:600;color:var(--muted);margin-left:4px;font-size:12px}
+.links{margin-left:auto;display:flex;gap:14px}
+.links a{padding:8px 10px;border-radius:12px}
+.links a.active,.links a:hover{background:rgba(124,58,237,.18)}
+.input,.select{background:#0b1020;color:var(--fg);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;outline:none}
+.input:focus,.select:focus{box-shadow:0 0 0 4px rgba(124,58,237,.2)}
+.btn{background:linear-gradient(135deg,var(--acc),#a78bfa);border:none;color:#0b0c12;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,.12)}
+.btn.small{font-size:12px;padding:8px 10px}
+.switch{display:flex;align-items:center;gap:8px}
+.switch input{accent-color:#a78bfa}
+.search{display:grid;grid-template-columns:1fr 160px 120px auto auto;gap:10px;padding:12px;margin:12px 0}
+@media (max-width:800px){.search{grid-template-columns:1fr 1fr 1fr;}.search .switch{grid-column:1/-1}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin:16px 0 24px}
+.card{display:flex;flex-direction:column;gap:10px;background:rgba(12,18,36,.6);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;transform:translateZ(0);transition:transform .18s ease, box-shadow .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 30px 120px rgba(0,0,0,.45)}
+.poster-wrap{position:relative;aspect-ratio:2/3;background:#0b0f1a}
+.poster{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+.type{position:absolute;left:8px;bottom:8px;background:linear-gradient(135deg,var(--acc2),#67e8f9);color:#001015;font-weight:800;padding:6px 8px;border-radius:999px;font-size:11px}
+.info{padding:0 12px 8px}
+.title{font-size:16px;margin:8px 0 6px}
+.meta{color:var(--muted);font-size:12px}
+.buttons{display:flex;gap:8px;padding:0 12px 12px}
+.pager{display:flex;gap:8px;align-items:center;justify-content:center;margin:18px 0}
+.pager .btn{background:#0b1020;color:#fff;border:1px solid rgba(255,255,255,.12)}
+.pager .btn.active{background:linear-gradient(135deg,var(--acc),#a78bfa);color:#0b0c12}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.modal.hidden{display:none}
+.modal-content{background:#0b0f1a;border:1px solid rgba(255,255,255,.08);border-radius:16px;max-width:920px;width:92%;padding:16px}
+.row-between{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.row-end{display:flex;justify-content:flex-end}
+.stack{display:grid;gap:10px}
+.pad{padding:12px}
+.two{grid-template-columns:1fr 1fr}
+.code{background:#0b1020;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px;overflow:auto}
+.stack .item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px}
+.hidden{display:none}
+.file{display:none}
+.tip{opacity:.9}

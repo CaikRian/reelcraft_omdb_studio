@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReelCraft — OMDb Studio</title>
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="bg-orb"></div>
+  <header class="site-header glass">
+    <div class="container nav">
+      <div class="brand">
+        <img src="assets/img/logo.svg" alt="" width="26" height="26">
+        <strong>ReelCraft</strong><span class="sub">OMDb Studio</span>
+      </div>
+      <nav class="links">
+        <a href="#" data-view="home" class="active">Home</a>
+        <a href="#" data-view="series">Series Explorer</a>
+        <a href="#" data-view="builder">Request Builder</a>
+        <a href="#" data-view="compare">Compare</a>
+        <a href="#" data-view="watchlist">Watchlist</a>
+      </nav>
+      <button id="btnSettings" class="btn ghost">⚙️</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="view-home" class="view">
+      <div class="search glass">
+        <input id="q" class="input" placeholder="Buscar por título... (ex: Batman)">
+        <select id="type" class="select">
+          <option value="">Qualquer tipo</option>
+          <option value="movie">Filme</option>
+          <option value="series">Série</option>
+          <option value="episode">Episódio</option>
+        </select>
+        <input id="year" class="input" type="number" min="1900" max="2100" placeholder="Ano">
+        <button id="btnSearch" class="btn">Buscar</button>
+        <label class="switch tip" title="Plot completo ao abrir detalhes">
+          <input type="checkbox" id="fullPlot">
+          <span>Plot full</span>
+        </label>
+      </div>
+
+      <div id="results" class="grid"></div>
+      <div id="pager" class="pager"></div>
+    </section>
+
+    <!-- SERIES -->
+    <section id="view-series" class="view hidden">
+      <div class="search glass">
+        <input id="seriesId" class="input" placeholder="IMDb ID (ex: tt0944947) ou título da série">
+        <input id="seasonNum" class="input" type="number" min="1" placeholder="Season (opcional)">
+        <input id="episodeNum" class="input" type="number" min="1" placeholder="Episode (opcional)">
+        <button id="btnSeries" class="btn">Carregar</button>
+      </div>
+      <div id="seriesOut" class="stack"></div>
+    </section>
+
+    <!-- BUILDER -->
+    <section id="view-builder" class="view hidden">
+      <div class="grid two">
+        <div class="glass pad">
+          <h3>By ID/Title</h3>
+          <div class="stack">
+            <input id="b_i" class="input" placeholder="i (IMDb ID)">
+            <input id="b_t" class="input" placeholder="t (Title)">
+            <select id="b_type" class="select">
+              <option value="">type</option><option>movie</option><option>series</option><option>episode</option>
+            </select>
+            <input id="b_y" class="input" placeholder="y (Year)">
+            <select id="b_plot" class="select"><option>short</option><option>full</option></select>
+            <select id="b_r" class="select"><option>json</option><option>xml</option></select>
+            <input id="b_callback" class="input" placeholder="callback (JSONP)">
+            <input id="b_v" class="input" placeholder="v (1)">
+            <button id="btnBuildIT" class="btn">Executar</button>
+          </div>
+        </div>
+        <div class="glass pad">
+          <h3>By Search</h3>
+          <div class="stack">
+            <input id="b_s" class="input" placeholder="s (Search)">
+            <select id="b_type2" class="select">
+              <option value="">type</option><option>movie</option><option>series</option><option>episode</option>
+            </select>
+            <input id="b_y2" class="input" placeholder="y (Year)">
+            <input id="b_page" class="input" type="number" min="1" max="100" placeholder="page (1-100)">
+            <select id="b_r2" class="select"><option>json</option><option>xml</option></select>
+            <input id="b_callback2" class="input" placeholder="callback (JSONP)">
+            <input id="b_v2" class="input" placeholder="v (1)">
+            <button id="btnBuildS" class="btn">Executar</button>
+          </div>
+        </div>
+      </div>
+      <div class="glass pad">
+        <div class="row-between">
+          <code id="builtUrl" class="code"></code>
+          <button id="btnCopy" class="btn ghost">Copiar URL</button>
+        </div>
+        <pre id="builderOut" class="code" aria-live="polite"></pre>
+      </div>
+    </section>
+
+    <!-- COMPARE -->
+    <section id="view-compare" class="view hidden">
+      <div class="search glass">
+        <input id="cmpA" class="input" placeholder="IMDb ID A (ex: tt1375666)">
+        <input id="cmpB" class="input" placeholder="IMDb ID B (ex: tt0816692)">
+        <button id="btnCompare" class="btn">Comparar</button>
+      </div>
+      <div id="compareOut" class="grid two"></div>
+    </section>
+
+    <!-- WATCHLIST -->
+    <section id="view-watchlist" class="view hidden">
+      <div id="watchlistOut" class="grid"></div>
+      <div class="actions">
+        <button id="btnExport" class="btn ghost">Exportar JSON</button>
+        <input type="file" id="importFile" accept="application/json" class="file">
+        <label for="importFile" class="btn">Importar JSON</label>
+      </div>
+    </section>
+  </main>
+
+  <!-- SETTINGS MODAL -->
+  <div id="settings" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="stTitle">
+    <div class="modal-content">
+      <h3 id="stTitle">Configurações</h3>
+      <div class="stack">
+        <input id="apiKey" class="input" placeholder="OMDb API Key (dados)">
+        <input id="posterKey" class="input" placeholder="Poster API Key (opcional/patron)">
+        <label class="switch"><input type="checkbox" id="usePoster"><span>Usar Poster API</span></label>
+      </div>
+      <div class="row-end">
+        <button id="stClose" class="btn">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <template id="cardT">
+    <article class="card">
+      <div class="poster-wrap">
+        <img class="poster" alt="">
+        <span class="type"></span>
+      </div>
+      <div class="info">
+        <h3 class="title"></h3>
+        <p class="meta"></p>
+      </div>
+      <div class="buttons">
+        <button class="btn small js-details">Detalhes</button>
+        <button class="btn small ghost js-save">Salvar</button>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
