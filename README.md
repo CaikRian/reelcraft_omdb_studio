@@ -68,45 +68,6 @@ python -m http.server 5501
 
 ---
 
-## ⚠️ Limitações conhecidas
-- Em ambientes **100% estáticos**, XML pode abrir melhor em **nova aba** (use o Request Builder para copiar a URL).
-- A **Poster API** do OMDb (alta resolução) requer **chave patron** — opcional.
-
----
-
-## ⬆️ Publicando no GitHub (branch `master`)
-
-> Exemplo usando repositório `reelcraft-omdb-studio` no usuário `CaikRian`.
-
-1) Crie o repositório no GitHub: `https://github.com/CaikRian/reelcraft-omdb-studio`  
-2) No terminal, dentro da pasta do projeto:
-```bash
-git init
-git branch -M master
-git add .
-git commit -m "feat: initial commit — ReelCraft OMDb Studio"
-git remote add origin https://github.com/CaikRian/reelcraft-omdb-studio.git
-git push -u origin master
-```
-
-### Se o remoto usa `main` como padrão
-- **Trocar local para main**:
-```bash
-git branch -M main
-git push -u origin main
-```
-- **Ou manter master** e mudar o default no GitHub: Settings → Branches → Default branch → `master`, depois:
-```bash
-git push -u origin master
-```
-
-> Configure nome/email do Git se necessário:
-```bash
-git config --global user.name "Caik Rian"
-git config --global user.email "seuemail@exemplo.com"
-```
-
----
 
 ## 📜 Licença
 Uso livre para portfólio/demonstrações.
